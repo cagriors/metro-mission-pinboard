@@ -97,6 +97,22 @@
         .ic-robb { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); background: #8b0000; }
 
         .floating-box { position: absolute; background: rgba(255,255,255,0.9); z-index: 10; padding: 8px; border: 2px solid #ccc; text-align: center; min-width: 100px; }
+
+        .site-footer {
+    margin-top: 30px;
+    padding: 15px;
+    color: #777; /* Hafif gri tonu, göz yormaz */
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1px;
+}
+
+.site-footer span {
+    color: var(--accent-blue); /* İsmin belirgin olması için mavi tonu */
+    font-weight: bold;
+}
+
+
     </style>
 </head>
 <body>
@@ -376,5 +392,9 @@
     document.getElementById('tool-select').click();
 };
     </script>
+
+    <div class="site-footer">
+    by <span>Muptazelle</span> (with 🤖)
+</div>
 </body>
 </html>
