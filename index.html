@@ -298,7 +298,6 @@
             b.innerHTML = `<div contenteditable="true"><b>${name}</b></div><div contenteditable="true">Açıklama...</div>`;
             b.onmousedown = (e) => {
                 document.querySelectorAll('.floating-box').forEach(x => x.style.outline = 'none');
-                b.style.outline = '2px dashed red'; activeDomBox = b;
                 if(e.target.isContentEditable) return;
                 let ox = e.clientX - b.offsetLeft, oy = e.clientY - b.offsetTop;
                 document.onmousemove = (m) => { b.style.left = (m.clientX - ox)+'px'; b.style.top = (m.clientY - oy)+'px'; };
