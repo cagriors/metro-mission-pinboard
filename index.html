@@ -8,7 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     
     <style>
-        
         body {
             margin: 0; padding: 20px;
             background-color: #2b2b2b;
@@ -42,18 +41,17 @@
         .header-inputs { display: flex; justify-content: center; gap: 20px; font-size: 14px; font-weight: bold; }
         .editable-line { display: inline-block; min-width: 40px; border-bottom: 1px solid #556070; outline: none; color: #333; }
 
-        /* SOL PANEL (ALT ALTA YAZIM DESTEKLİ) */
+        /* SOL PANEL */
         .left-panel {
             position: absolute; left: 20px; top: 120px; bottom: 20px; width: 250px;
             border: 1px solid #d0d5db; padding: 15px; box-sizing: border-box;
             display: flex; flex-direction: column; gap: 15px; z-index: 10;
             background: rgba(255,255,255,0.9);
         }
-        .left-panel h3 { margin: 0 0 2px 0; font-size: 14px; color: #6b7a8f; padding-bottom: 2px; }
+        .left-panel h3 { margin: 0 0 1px 0; font-size: 14px; color: #6b7a8f; padding-bottom: 2px; }
         
-        /* Multiline Edit Alanı */
         .editable-multiline { 
-            outline: none; font-size: 13px; color: #333; line-height: 1.4; 
+            outline: none; font-size: 13px; color: #333; line-height: 1.0; 
             min-height: 20px; white-space: pre-wrap; word-wrap: break-word;
         }
 
@@ -63,7 +61,7 @@
             z-index: 1; border: 1px dashed #ccc;
         }
 
-        /* CRIMES (Yüzen Liste) */
+        /* CRIMES */
         #legend { 
             position: absolute; top: 300px; right: 40px; width: 90px; 
             text-align: left; background: none; z-index: 10; pointer-events: none;
@@ -71,7 +69,7 @@
         #legend h3 { margin: 0 0 10px 0; font-size: 14px; color: #333; text-align: center; }
         .crime-drag { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: grab; font-size: 12px; color: #444; font-weight: bold; pointer-events: auto;}
 
-        /* RECAP (Sağ alt sabit) */
+        /* RECAP */
         #recap-panel {
             position: absolute; bottom: 20px; right: 20px; width: 240px;
             border: 1px solid #d0d5db; padding: 15px; background: rgba(255,255,255,0.95); z-index: 11;
@@ -84,35 +82,25 @@
             min-width: 30px; padding: 0 3px; color: #333; font-weight: bold; text-align: center;
         }
 
-        /* İkonlar */
-        .icon { width: 14px; height: 14px; display: inline-block; flex-shrink: 0;}
-        .ic-burg { background: #8b0000; border-radius: 50%; }
-        .ic-gta { clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background: #cc0000; }
-        .ic-btfv { background: #8b0000; transform: rotate(45deg); width: 10px; height: 10px; }
-        .ic-gtp { clip-path: polygon(0 0, 0 100%, 100% 50%); background: #8b0000; }
-        .ic-theft { clip-path: polygon(100% 0, 100% 100%, 0 50%); background: #8b0000; }
-        .ic-hom { clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); background: #8b0000; }
-        .ic-agg { background: #8b0000; }
-        .ic-rape { clip-path: polygon(20% 0%, 80% 0%, 80% 20%, 100% 20%, 100% 80%, 80% 80%, 80% 100%, 20% 100%, 20% 80%, 0% 80%, 0% 20%, 20% 20%); background: #8b0000; }
-        .ic-robb { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); background: #8b0000; }
-
-        .floating-box { position: absolute; background: rgba(255,255,255,0.9); z-index: 10; padding: 8px; border: 2px solid #ccc; text-align: center; min-width: 100px; }
+        /* Görev Kutusu Tasarımı */
+        .floating-box { 
+            position: absolute; background: rgba(255,255,255,0.9); z-index: 10; 
+            padding: 8px; border: 2px solid #ccc; text-align: center; 
+            min-width: 100px; transition: box-shadow 0.2s;
+        }
 
         .site-footer {
-    margin-top: 30px;
-    padding: 15px;
-    color: #777; /* Hafif gri tonu, göz yormaz */
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 1px;
-}
-
-.site-footer span {
-    color: var(--accent-blue); /* İsmin belirgin olması için mavi tonu */
-    font-weight: bold;
-}
-
-
+            margin-top: 30px;
+            padding: 15px;
+            color: #777;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
+        }
+        .site-footer span {
+            color: #4a90e2;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -138,7 +126,6 @@
     </div>
 
     <div id="document-container">
-        
         <div class="doc-header">
             <h1 class="editable-title" contenteditable="true">METRO MISSION: BURAYA</h1>
             <div class="header-inputs">
@@ -152,20 +139,15 @@
         <div class="left-panel">
             <h3>Cluster(s)/Repeat location(s):</h3>
             <div class="editable-multiline" contenteditable="true">BURAYA</div>
-            
             <h3>Suspect(s):</h3>
             <div class="editable-multiline" contenteditable="true">BURAYA</div>
-            
             <h3>Vehicle(s):</h3>
             <div class="editable-multiline" contenteditable="true">BURAYA</div>
-
             <h3>Related DR#(s):</h3>
             <div class="editable-multiline" contenteditable="true">BURAYA</div>
-
             <h3>Detective Info:</h3>
             <div class="editable-multiline" contenteditable="true">BURAYA</div>
-            
-            <div style="margin-top:auto; font-size:11px; font-style:italic;  padding-top: 5px;">
+            <div style="margin-top:auto; font-size:11px; font-style:italic; padding-top: 5px;">
                 Crimes: <span class="editable-line" contenteditable="true">YYYY-AA-GG</span> to <span class="editable-line" contenteditable="true">YYYY-AA-GG</span>
             </div>
         </div>
@@ -176,41 +158,15 @@
 
         <div id="legend">
             <h3>Crimes</h3>
-                <div class="crime-drag" draggable="true" data-type="image" data-img="burglary.png">
-                <img src="burglary.png" width="20" height="20"> BURG
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="gta.png">
-                <img src="gta.png" width="20" height="20"> GTA
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="btfv.png">
-                <img src="btfv.png" width="20" height="20"> BTFV
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="gtp.png">
-                <img src="gtp.png" width="20" height="20"> GTP
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="theft.png">
-                <img src="theft.png" width="20" height="20"> THEFT
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="hom.png">
-                <img src="hom.png" width="20" height="20"> HOM
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="agg.png">
-                <img src="agg.png" width="20" height="20"> AGG
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="rape.png">
-                <img src="rape.png" width="20" height="20"> RAPE
-                </div>
-
-                <div class="crime-drag" draggable="true" data-type="image" data-img="robb.png">
-                <img src="robb.png" width="20" height="20"> ROBB
-                </div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="burglary.png"><img src="burglary.png" width="20" height="20"> BURG</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="gta.png"><img src="gta.png" width="20" height="20"> GTA</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="btfv.png"><img src="btfv.png" width="20" height="20"> BTFV</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="gtp.png"><img src="gtp.png" width="20" height="20"> GTP</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="theft.png"><img src="theft.png" width="20" height="20"> THEFT</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="hom.png"><img src="hom.png" width="20" height="20"> HOM</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="agg.png"><img src="agg.png" width="20" height="20"> AGG</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="rape.png"><img src="rape.png" width="20" height="20"> RAPE</div>
+            <div class="crime-drag" draggable="true" data-type="image" data-img="robb.png"><img src="robb.png" width="20" height="20"> ROBB</div>
         </div>
 
         <div id="recap-panel">
@@ -224,10 +180,18 @@
         </div>
     </div>
 
+    <div class="site-footer">
+        by <span>Muptazelle</span> (with 🤖)
+    </div>
+
     <script>
         let activeDomBox = null;
         const mapArea = document.getElementById('map-area');
-        const canvas = new fabric.Canvas('board', { width: mapArea.clientWidth, height: mapArea.clientHeight });
+        const canvas = new fabric.Canvas('board', { 
+            width: mapArea.clientWidth, 
+            height: mapArea.clientHeight,
+            preserveObjectStacking: true 
+        });
 
         // Harita Yükleme
         document.getElementById('map-upload').onchange = (e) => {
@@ -242,11 +206,10 @@
 
         // Harita Kaldırma
         document.getElementById('btn-remove-map').onclick = () => {
-                if(confirm("Arka plan haritasını kaldırmak istediğinize emin misiniz?")) {
-                    canvas.setBackgroundImage(null, canvas.renderAll.bind(canvas));
-        // İsteğe bağlı: Zoom ve Pan ayarlarını da sıfırla
-                    canvas.setViewportTransform([1,0,0,1,0,0]); 
-                }
+            if(confirm("Arka plan haritasını kaldırmak istediğinize emin misiniz?")) {
+                canvas.setBackgroundImage(null, canvas.renderAll.bind(canvas));
+                canvas.setViewportTransform([1,0,0,1,0,0]); 
+            }
         }; 
 
         // Araçlar
@@ -275,6 +238,10 @@
         });
 
         canvas.on('mouse:down', (opt) => {
+            if(!opt.target) {
+                activeDomBox = null;
+                document.querySelectorAll('.floating-box').forEach(box => box.style.boxShadow = 'none');
+            }
             if(currentTool === 'pan' || opt.e.altKey) {
                 this.isDragging = true; this.lastX = opt.e.clientX; this.lastY = opt.e.clientY;
             } else if(currentTool === 'line') {
@@ -296,105 +263,103 @@
 
         canvas.on('mouse:up', () => { this.isDragging = false; isDrawingLine = false; });
 
-        // Silme
+        // SILME FONKSIYONU (GÜNCELLENDİ)
         const del = () => { 
-            if(activeDomBox) { activeDomBox.remove(); activeDomBox = null; } 
-            canvas.getActiveObjects().forEach(o => canvas.remove(o)); 
-            canvas.discardActiveObject().renderAll(); 
+            // Eğer bir kutu seçiliyse (HTML) sil
+            if (activeDomBox) { 
+                activeDomBox.remove(); 
+                activeDomBox = null; 
+            } 
+            // Canvas üzerindeki objeleri sil
+            const activeObjects = canvas.getActiveObjects();
+            if (activeObjects.length > 0) {
+                activeObjects.forEach(o => canvas.remove(o)); 
+                canvas.discardActiveObject().renderAll(); 
+            }
         };
         document.getElementById('btn-delete-obj').onclick = del;
-        window.onkeydown = (e) => { if((e.key === 'Delete' || e.key === 'Backspace') && !e.target.isContentEditable) del(); };
+        window.onkeydown = (e) => { 
+            if((e.key === 'Delete' || e.key === 'Backspace') && !e.target.isContentEditable && e.target.tagName !== 'INPUT') del(); 
+        };
 
-        // Kutu Ekleme
+        // Kutu Ekleme (SEÇİM MANTIĞI EKLENDİ)
         document.getElementById('add-mission').onclick = () => {
             const name = document.getElementById('new-mission-name').value || 'GÖREV';
             const color = document.getElementById('new-mission-color').value;
             const b = document.createElement('div'); b.className = 'floating-box';
             b.style.cssText = `border:2px solid ${color}; color:${color}; left:400px; top:300px; cursor:move;`;
-            b.innerHTML = `<div contenteditable="true"><b>${name}</b></div><div contenteditable="true">Açıklama...</div>`;
+            b.innerHTML = `<div contenteditable="true"><b>${name}</b></div><div contenteditable="true" style="white-space: pre-wrap;">Açıklama...</div>`;
+            
             b.onmousedown = (e) => {
-                document.querySelectorAll('.floating-box').forEach(x => x.style.outline = 'none');
+                // Seçim parlamasını ayarla
+                document.querySelectorAll('.floating-box').forEach(x => x.style.boxShadow = 'none');
+                activeDomBox = b;
+                b.style.boxShadow = `0 0 15px ${color}`;
+
                 if(e.target.isContentEditable) return;
                 let ox = e.clientX - b.offsetLeft, oy = e.clientY - b.offsetTop;
-                document.onmousemove = (m) => { b.style.left = (m.clientX - ox)+'px'; b.style.top = (m.clientY - oy)+'px'; };
-                document.onmouseup = () => document.onmousemove = null;
+                const move = (m) => {
+                    b.style.left = (m.clientX - ox)+'px';
+                    b.style.top = (m.clientY - oy)+'px';
+                };
+                const stop = () => {
+                    document.removeEventListener('mousemove', move);
+                    document.removeEventListener('mouseup', stop);
+                };
+                document.addEventListener('mousemove', move);
+                document.addEventListener('mouseup', stop);
             };
             document.getElementById('document-container').appendChild(b);
         };
 
         // İkonlar
-        document.querySelectorAll('.crime-drag').forEach(d => { d.ondragstart = (e) => { 
-        e.dataTransfer.setData('type', d.dataset.type); 
-        e.dataTransfer.setData('img', d.dataset.img); // Resim yolunu aktar
-    };
-});
+        document.querySelectorAll('.crime-drag').forEach(d => { 
+            d.ondragstart = (e) => { 
+                e.dataTransfer.setData('type', d.dataset.type); 
+                e.dataTransfer.setData('img', d.dataset.img); 
+            };
+        });
+
         mapArea.ondragover = e => e.preventDefault();
         mapArea.ondrop = e => {
-    const p = canvas.getPointer(e);
-    const inv = fabric.util.invertTransform(canvas.viewportTransform);
-    const act = fabric.util.transformPoint(p, inv);
-    
-    const type = e.dataTransfer.getData('type');
-    const imgUrl = e.dataTransfer.getData('img'); // Yeni eklediğimiz resim yolu
+            const p = canvas.getPointer(e);
+            const inv = fabric.util.invertTransform(canvas.viewportTransform);
+            const act = fabric.util.transformPoint(p, inv);
+            const type = e.dataTransfer.getData('type');
+            const imgUrl = e.dataTransfer.getData('img');
 
-    if (type === 'image') {
-        fabric.Image.fromURL(imgUrl, function(img) {
-            img.set({
-                left: act.x,
-                top: act.y,
-                originX: 'center',
-                originY: 'center',
-                borderColor: '#e74c3c',
-                cornerColor: '#e74c3c',
-                cornerSize: 10,
-                transparentCorners: false
-            });
-            // İkon çok büyükse başlangıç ölçeğini buradan ayarlayabilirsin
-            img.scaleToWidth(30); 
-            
-            canvas.add(img);
-            canvas.setActiveObject(img);
-        }, { crossOrigin: 'anonymous' });
-    }
-};
+            if (type === 'image') {
+                fabric.Image.fromURL(imgUrl, function(img) {
+                    img.set({
+                        left: act.x, top: act.y, originX: 'center', originY: 'center',
+                        borderColor: '#e74c3c', cornerColor: '#e74c3c', cornerSize: 10, transparentCorners: false
+                    });
+                    img.scaleToWidth(30); 
+                    canvas.add(img);
+                    canvas.setActiveObject(img);
+                }, { crossOrigin: 'anonymous' });
+            }
+        };
 
-
-
-        // Enter Engeli Sadece Tek Satırlık Alanlarda
+        // Enter Engeli
         document.addEventListener('keydown', (e) => { 
-            const isMultiline = e.target.classList.contains('editable-multiline');
+            const isMultiline = e.target.classList.contains('editable-multiline') || e.target.closest('.floating-box');
             if(e.key === 'Enter' && e.target.isContentEditable && !isMultiline) { 
                 e.preventDefault(); 
                 e.target.blur(); 
             } 
         });
 
+        // Yazı Ekleme
         document.getElementById('tool-text-add').onclick = () => {
-    const text = new fabric.IText('Yazıyı Düzenle', {
-        left: 100, // Haritanın neresine ekleneceği
-        top: 100,
-        fontFamily: 'Arial',
-        fontSize: 24,
-        fill: '#333',
-        fontWeight: 'bold',
-        // Seçildiğinde görünecek ayarlar (Büyütme/Küçültme için)
-        borderColor: '#e74c3c',
-        cornerColor: '#e74c3c',
-        cornerSize: 12,
-        transparentCorners: false,
-        padding: 5
-    });
-
-    canvas.add(text);
-    canvas.setActiveObject(text); // Eklendiği an seçili yap
-    
-    // Yazıyı ekledikten sonra otomatik olarak "Seçim" aracına geri dön
-    document.getElementById('tool-select').click();
-};
+            const text = new fabric.IText('Yazıyı Düzenle', {
+                left: 100, top: 100, fontFamily: 'Arial', fontSize: 24, fill: '#333', fontWeight: 'bold',
+                borderColor: '#e74c3c', cornerColor: '#e74c3c', cornerSize: 12, transparentCorners: false, padding: 5
+            });
+            canvas.add(text);
+            canvas.setActiveObject(text);
+            document.getElementById('tool-select').click();
+        };
     </script>
-
-    <div class="site-footer">
-    by <span>Muptazelle</span> (with 🤖)
-</div>
 </body>
 </html>
